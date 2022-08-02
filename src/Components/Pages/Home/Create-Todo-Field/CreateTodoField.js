@@ -5,15 +5,19 @@ const CreateTodoField = ({setTodos}) => {
     const [title, setTitle] = useState('');
 
     const addTodo = (title) => {
-        setTodos(prev => [
-            {
-                _id: new Date(),
-                title,
-                isCompleted: false
-            },
-            ...prev, 
-        ])
-        setTitle('');
+
+        if (title) {
+            
+            setTodos(prev => [
+                {
+                    _id: new Date(),
+                    title,
+                    isCompleted: false
+                },
+                ...prev, 
+            ])
+            setTitle('');
+        }
     }
 
   return (
@@ -26,6 +30,7 @@ const CreateTodoField = ({setTodos}) => {
             onKeyPress={e => e.key === 'Enter' && addTodo(title)}
             placeholder='Add a task'
         />
+        
     </div>
   )
 }
